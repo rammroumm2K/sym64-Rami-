@@ -1,0 +1,48 @@
+    <nav class=" navbar-expand-lg fixed-top navbar bg-dark shadow" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="{{asset ('img/Playstation-logo.png')}}" alt="logo" width="35"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-5">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="{{ path ('homepage')}}">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="{{ path ('about_me')}}">About</a>
+                    </li>
+                        {% if sections is defined %}
+                        {% for section in sections %}
+                              <li class="nav-item">
+                               <a class="nav-link" href="{{ path('section', {id: section.id}) }}">{{ section.sectionTitle }}</a>
+                                 </li>
+                        {% endfor %}
+                        {% endif %}
+                    {% if is_granted('IS_AUTHENTICATED') %}
+                <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+                </li>
+                    {% if is_granted('ROLE_ADMIN') %}
+                <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_admin') }}">Administration</a>
+                </li>
+                    {% endif %}
+                {% else %}
+                <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+                </li>
+                {% endif %}
+                   
+                </ul>
+            </div>
+
+ 
+
+
+
+        </div>
+    </nav>

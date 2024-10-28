@@ -28,7 +28,8 @@ class AppFixtures extends Fixture
              ->setFullname('Admin User')
              ->setRoles(['ROLE_ADMIN'])
              ->setPassword($this->passwordHasher->hashPassword($admin, 'admin'))
-             ->setIsActive(true);
+             ->setActivate(true)
+             ->setUniqid(uniqid("user",true));
        $manager->persist($admin);
        $users[] = $admin;
        // ROLE_REDAC
@@ -39,7 +40,8 @@ class AppFixtures extends Fixture
                  ->setFullname($faker->name)
                  ->setRoles(['ROLE_REDAC'])
                  ->setPassword($this->passwordHasher->hashPassword($redac, "redac{$i}"))
-                 ->setIsActive(true);
+                 ->setActivate(true)
+                 ->setUniqid(uniqid("user",true));
            $manager->persist($redac);
            $users[] = $redac;
        }
@@ -51,16 +53,17 @@ class AppFixtures extends Fixture
                 ->setFullname($faker->name)
                 ->setRoles(['ROLE_USER'])
                 ->setPassword($this->passwordHasher->hashPassword($user, "user{$i}"))
-                ->setIsActive($i % 4 !== 0);
+                ->setActivate($i % 4 !== 0)
+                ->setUniqid(uniqid("user",true));
            $manager->persist($user);
        }
        // Création des sections
        $sections = [];
        for ($i = 1; $i <= 6; $i++) {
            $section = new Section();
-           $section->setTitle($title = $faker->sentence)
-                   ->setSlug($slugify->slugify($title))
-                   ->setDescription($faker->paragraph);
+           $section->setSectionTitle($title = $faker->sentence)
+                   ->setSectionSlug($slugify->slugify($title))
+                   ->setSectionDetail($faker->paragraph);
            $manager->persist($section);
            $sections[] = $section;
        }
@@ -68,14 +71,15 @@ class AppFixtures extends Fixture
        for ($i = 1; $i <= 160; $i++) {
            $article = new Article();
            $article->setTitle($title = $faker->sentence)
-                   ->setSlug($slugify->slugify($title))
-                   ->setContent($faker->paragraphs(3, true))
-                   ->setCreatedAt($createdAt = $faker->dateTimeBetween('-6 months', 'now'))
-                   ->setAuthor($users[array_rand($users)]) // Sélectionne un auteur aléatoire
-                   ->setSection($sections[array_rand($sections)]); // Section aléatoire
+                   ->setTitleSlug($slugify->slugify($title))
+                   ->setText($faker->paragraphs(3, true))
+                   ->setArticleDateCreate($createdAt = $faker->dateTimeBetween('-6 months', 'now'))
+                   ->setUser($users[array_rand($users)]) // Sélectionne un auteur aléatoire
+                   ->setPublished(true)
+                   ->addSection($sections[array_rand($sections)]); // Section aléatoire
            // 3 chances sur 4 que l'article soit publié
            if (rand(0, 3) > 0) {
-               $article->setPublishedAt($faker->dateTimeBetween($createdAt));
+               $article->setArticleDatePosted($faker->dateTimeBetween($createdAt));
            }
            $manager->persist($article);
        }

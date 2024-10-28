@@ -1,0 +1,18 @@
+{% extends 'template.back.html.twig' %}
+
+{% block title %}{{ parent() }} | {{ title }} }}{% endblock %}
+{% block header %}
+    <h1>{{ title }}</h1>
+    <p>{{ homepage_text }}</p>
+{% endblock %}
+
+{% block main %}
+
+    <div calss="" style="margin-top: 6rem; margin-left">
+
+    {{ include('admin_section/_form.html.twig') }}
+
+    <a href="{{ path('app_admin_section_index') }}">back to list</a>
+
+    </div>
+{% endblock %}
