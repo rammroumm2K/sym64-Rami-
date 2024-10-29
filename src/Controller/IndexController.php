@@ -41,9 +41,9 @@ class IndexController extends AbstractController
     {
         // récupération de la section
         $section = $sections->find($id);
-        return $this->render('main/section.html.twig', [
+        return $this->render('index/section.html.twig', [
             'title' => 'Section '.$section->getSectionTitle(),
-            'homepage_text'=> $section->getSectionDescription(),
+            'homepage_text'=> $section->getSectionSlug(),
             'section' => $section,
             'sections' => $sections->findAll(),
         ]);

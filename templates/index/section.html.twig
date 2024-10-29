@@ -1,113 +1,75 @@
-{# templates/main/section.html.twig #}
 {% extends 'template.front.html.twig' %}
 
 {# on surcharge le block parent #}
 {% block title %}
-	{{ parent() }}
-	|
-	{{ title }}
+{{ parent() }}
+|
+{{ title }}
 {% endblock %}
 
 {% block header %}
-	<h1>{{ title }}</h1>
-	<p>{{ homepage_text }}</p>
+<h1>{{ title }}</h1>
+<p>{{ homepage_text }}</p>
 {% endblock %}
 
 {% block containerPost %}
 <div class="container px-4 py-5" id="custom-cards" style="margin-top:6rem;">
-        <h2 class="pb-2 border-bottom text-center">Nos dérniere Post Blog</h2>
-        <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
-            <div class="col">
-                <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg border-0"
-                    style="background: linear-gradient(90deg, hsla(208, 100%, 41%, 1) 0%, hsla(216, 40%, 58%, 1) 100%);;">
-                    <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-                        <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Exclusive Games</h3>
-                        <ul class="d-flex list-unstyled mt-auto">
-                            <li class="me-auto">
-                                <img src="{{asset('img/icons/ps.png')}}" alt="Playstation" width="45" height="32">
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+    <h2 class="pb-2 border-bottom text-center text-light">Nos dérniere Post Blog</h2>
+    
+   
 
-            <div class="col">
-                <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg border-0"
-                    style="background: linear-gradient(90deg, hsla(240, 100%, 50%, 1) 0%, hsla(240, 100%, 15%, 1) 0%, hsla(0, 0%, 0%, 1) 81%);">
-                    <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-                        <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Crossplay</h3>
-                        <ul class="d-flex list-unstyled mt-auto">
-                            <li class="me-auto">
-                                <img src="{{asset('img/icons/crossplay.png')}}" alt="Crossplay" width="32" height="32">
-                            </li>
-                        </ul>
+    <section id="gallery">
+        <div class="container">
+            <div class="row">
+            {% for section in sections %}
+                                <div class="col-lg-4 mb-4">
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1477862096227-3a1bb3b08330?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60"
+                            alt="" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ section.SectionTitle }}</h5>
+                            <p class="card-text">{{ section.SectionSlug }}</p>
+                            <a href="" class="btn btn-outline-success btn-sm">Read More</a>
+                            
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="col">
-                <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg border-0"
-                    style="background: linear-gradient(90deg, hsla(46, 100%, 49%, 1) 0%, hsla(46, 100%, 49%, 1) 11%, hsla(329, 20%, 24%, 1) 100%);">
-                    <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
-                        <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Playstation Plus</h3>
-                        <ul class="d-flex list-unstyled mt-auto">
-                            <li class="me-auto">
-                                <img src="{{asset('img/icons/plus.png')}}" alt="Bootstrap" width="32" height="32">
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                {% else %}
+                <div id="plus">
+                    <div class="container-sm p-5">
+                        <div class="container col-xxl-8 px-4 py-5">
+                            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+                                <div class="col-10 col-sm-8 col-lg-6">
+                                    <img src="{{ asset('img/fondo plus.webp') }}" class="d-block mx-lg-auto img-fluid rounded shadow"
+                                        alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+                                </div>
+                                <div class="col-lg-6">
+                                    <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Bienvenue sur PlayStation Blogger</h1>
+                                    <p class="lead">Découvrez les dernières nouveautés en matière de jeux vidéo ! Nos articles mettent
+                                        en avant les nouvelles sorties et les DLC récents, explorant leurs fonctionnalités et l'impact
+                                        sur l'expérience de jeu. Restez informé sur les tendances actuelles pour ne rien manquer !
+                
+                                    </p>
+                
+                                </div>
+                            </div>
+            
+                
+                
             </div>
         </div>
-    </div>
+    </section>
+{% endfor %}
+
+</div>
 {% endblock %}
 
 {% block carousel %}{% endblock %}
 
 
 {% block psplus %}
-	
-<div id="plus">
-    <div class="container-sm p-5">
-        <div class="container col-xxl-8 px-4 py-5">
-            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-                <div class="col-10 col-sm-8 col-lg-6">
-                    <img src="{{ asset('img/fondo plus.webp') }}" class="d-block mx-lg-auto img-fluid rounded shadow" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
-                </div>
-                <div class="col-lg-6">
-                    <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Bienvenue sur PlayStation Blogger</h1>
-                    <p class="lead">Découvrez les dernières nouveautés en matière de jeux vidéo ! Nos articles mettent en avant les nouvelles sorties et les DLC récents, explorant leurs fonctionnalités et l'impact sur l'expérience de jeu. Restez informé sur les tendances actuelles pour ne rien manquer !
 
-</p>
-                   
-                </div>
-            </div>
-<div class="wrapper">
-    <div class="container">
-        <div class="row">
-            <div class="col text-center mb-5">
-                <h1 class="display-4 font-weight-bolder">Derniers Articles</h1>
-                <p class="lead">Découvrez nos derniers articles sur les jeux et DLC récents.</p>
-            </div>
-        </div>
-        <div class="row">
-    {% for post in section.posts %}
-        <div class="col-md-4 mb-4">
-            <div class="card">
-                <div class="card-block">
-                    <h4 class="card-title">{{ post.postTitle }}</h4>
-                    <h6 class="card-subtitle text-muted">Écrit par {{ post.user.username }} le {{ post.postDateCreated|date("d/m/Y à H:i") }}</h6>
-                    <p class="card-text p-y-1">{{ post.postText }}</p>
-                    <a href="#" class="card-link">link</a>
-                    <a href="#" class="card-link">Second link</a>
-                </div>
-            </div>
-        </div>
-    {% else %}
-        <h3>Pas encore d'articles</h3>
-    {% endfor %}
-</div>
 
-</div>
+            
 
-{% endblock %}
+                {% endblock %}

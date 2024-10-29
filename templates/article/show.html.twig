@@ -1,11 +1,13 @@
 {% extends 'template.back.html.twig' %}
 {% block title %}Article{% endblock %}
 {% block body %}
-    <h1>Article</h1>
-    <table class="table">
+{% block main %}
+
+    
+    <table style="margin-top:70px; padding:10px;" class="table">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>ID</th>
                 <td>{{ article.id }}</td>
             </tr>
             <tr>
@@ -13,7 +15,7 @@
                 <td>{{ article.title }}</td>
             </tr>
             <tr>
-                <th>Title_slug</th>
+                <th>Title Slug</th>
                 <td>{{ article.titleSlug }}</td>
             </tr>
             <tr>
@@ -21,11 +23,11 @@
                 <td>{{ article.text }}</td>
             </tr>
             <tr>
-                <th>Article_date_create</th>
+                <th>Date</th>
                 <td>{{ article.articleDateCreate ? article.articleDateCreate|date('Y-m-d') : '' }}</td>
             </tr>
             <tr>
-                <th>Article_date_posted</th>
+                <th>Posted</th>
                 <td>{{ article.articleDatePosted ? article.articleDatePosted|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
@@ -37,4 +39,5 @@
     <a href="{{ path('app_article_index') }}">back to list</a>
     <a href="{{ path('app_article_edit', {'id': article.id}) }}">edit</a>
     {{ include('article/_delete_form.html.twig') }}
+{% endblock %}
 {% endblock %}

@@ -1,39 +1,47 @@
-body{
-    font-family: 'Roboto', sans-serif!important;
+html {
+    scroll-behavior: smooth;
 }
 
-:root{
+body {
+    font-family: 'Roboto', sans-serif !important;
+    margin: 0;
+    padding: 0 5%;
+
+}
+
+:root {
 
     --color1: #0070D1;
 }
 
-.filter{
+.filter {
     filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
 }
 
-.filter:hover{
+.filter:hover {
     cursor: pointer;
 }
 
 .carousel-container {
-    margin-top: 40px; 
+    margin-top: 40px;
 }
-.carousel-item img{
+
+.carousel-item img {
     filter: brightness(80%);
 }
 
 .carousel-caption {
     position: absolute;
-    top: 60%; 
-    left: 50%; 
+    top: 60%;
+    left: 50%;
     transform: translate(-40%, -50%);
-    color: #fff; 
+    color: #fff;
     text-align: center;
     padding: 10px;
 }
 
-#featured .card{
-    color: white;  
+#featured .card {
+    color: white;
     background-color: #212529;
 }
 
@@ -41,7 +49,7 @@ body{
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-    
+
 }
 
 .card-cover:hover {
@@ -49,40 +57,77 @@ body{
     cursor: pointer;
     transform: translateY(10px);
 }
-  
-#featured .card:hover{
+
+#featured .card:hover {
     cursor: pointer;
     transition: .5s;
     transform: scale(1.05);
 }
 
-#plus{
+#plus {
     background-color: #F9BE00;
 }
 
-#games{
+#games {
     background-color: #1F1F1F;
 }
 
-#featured{
+#featured {
     background-color: #ededed;
 }
 
-#games .card:hover{
+#games .card:hover {
     cursor: pointer;
     transition: .7s;
     filter: brightness(50%);
 }
 
-.gradient-custom {
-    /* fallback for old browsers */
-    background-image: url(../img/carousel-home/PSBlueBG.jpg.png);
+#header {
+    background: url(https://images.unsplash.com/photo-1415795854641-f4a487a0fdc8?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80) center center / cover no-repeat;
+}
+
+
+#PSLOG {
+    background-image: url(../img/carousel-home/backgroundPS-FORM.jpg.png);
     background-size: cover;
+}
+
+@media only screen and (max-width: 768px) {
+
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+        display: block;
+        width: 100%;
     }
 
-    #PSLOG{
-        background-image: url(../img/carousel-home/backgroundPS-FORM.jpg.png);
-        background-size: cover;
+    thead {
+        display: none;
     }
 
- 
+    tr {
+        margin-bottom: 10px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    /* Ogni cella viene trattata come un blocco e visualizza l'intestazione */
+
+    td {
+        display: flex;
+        padding: 10px;
+        text-align: center;
+        flex-direction: column;
+        align-content: stretch;
+        align-items: flex-start;
+    }
+
+    /* Aggiunge una pseudo-classe con il nome dell'intestazione per ogni cella */
+    td::before {
+        content: attr(data-label);
+        /* Usa l'attributo data-label per mostrare l'etichetta */
+        font-weight: bold;
+    }
+}
