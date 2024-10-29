@@ -8,12 +8,11 @@
 {% endblock %}
 
 {% block main %}
-<h1>Create new Article</h1>
 
-    <div class="row" style="margin-top: 6rem;">
-    {{ include('article/_form.html.twig') }}
-
-    <a href="{{ path('    <a href="{{ path('app_article_index') }}">back to list</a>
-') }}">back to list</a>
-    </div>
+<div class="row" style="margin-top: 6rem;">
+       {{ include('article/_form.html.twig', { form: form, button_label: 'Save' }) }}
+<a href="{{ path('app_article_index') }}">back to list</a>
+</div>
 {% endblock %}
+
+

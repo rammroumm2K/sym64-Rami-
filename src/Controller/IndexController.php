@@ -23,16 +23,8 @@ class IndexController extends AbstractController
             ]
         );
     }
-    #[Route('/about', name: 'about_me')]
-    public function aboutMe(SectionRepository $sections): Response
-    {
-        return $this->render('main/about.html.twig', [
-            'title' => 'About me',
-            'homepage_text'=> "Et je parle encore de moi !",
-            # on met dans une variable pour twig toutes les sections récupérées
-            'sections' => $sections->findAll()
-        ]);
-    }
+ 
+   
 
     // création de l'url pour le détail d'une section
     #[Route(

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\SectionRepository;
 use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
@@ -39,7 +40,8 @@ final class ArticleController extends AbstractController
 
         return $this->render('article/new.html.twig', [
             'article' => $article,
-            'form' => $form,
+            'form' => $form->createView(),
+            'title'=>'Create article',
         ]);
     }
 
