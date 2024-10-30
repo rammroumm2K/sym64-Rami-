@@ -13,29 +13,38 @@
 {% endblock %}
 
 {% block containerPost %}
-<div class="container px-4 py-5" id="custom-cards" style="margin-top:6rem;">
-    <h2 class="pb-2 border-bottom text-center text-light">Nos dérniere Post Blog</h2>
-    
-   
 
-    <section id="gallery">
-        <div class="container">
-            <div class="row">
-            {% for section in sections %}
-                                <div class="col-lg-4 mb-4">
-                    <div class="card">
-                        <img src="https://images.unsplash.com/photo-1477862096227-3a1bb3b08330?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60"
-                            alt="" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ section.SectionTitle }}</h5>
-                            <p class="card-text">{{ section.SectionSlug }}</p>
-                            <a href="" class="btn btn-outline-success btn-sm">Read More</a>
-                            
-                        </div>
-                    </div>
-                </div>
-                {% else %}
-                <div id="plus">
+{% endblock %}
+
+{% block carousel %}
+<section class="dark pt-4">
+		<h1 class="h1 text-center text-light m-6" id="pageHeaderTitle">Nos dernières Articles</h1>
+     
+{% for item in section.articles %}
+	<div class="container py-4">
+		<article class="postcard dark blue">
+			<a class="postcard__img_link" href="#">
+				<img class="postcard__img" src="https://xsgames.co/randomusers/avatar.php?g=male" alt="Image Title" />
+			</a>
+			<div class="postcard__text">
+				<h1 class="postcard__title blue"><a href="#"> Titre: {{ item.title}}</a></h1>
+				<div class="postcard__subtitle small">
+					<time datetime="2020-05-25 12:00:00">
+						<i class="fas fa-calendar-alt mr-2"></i> Slug: {{ item.titleSlug }}
+					</time>
+				</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">{{ item.text}}</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item"><i class="fas fa-tag mr-2"></i>Écrit par {{item.User.fullname}}</li>
+					<li class="tag__item"><i class="fas fa-clock mr-2"></i>Publié le: {{ item.articleDatePosted|date("d/m/Y \à H:i") }}</li>
+					
+				</ul>
+			</div>
+		</article>
+	</div>
+    {% else %}
+    <div id="plus">
                     <div class="container-sm p-5">
                         <div class="container col-xxl-8 px-4 py-5">
                             <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
@@ -45,26 +54,20 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Bienvenue sur PlayStation Blogger</h1>
-                                    <p class="lead">Découvrez les dernières nouveautés en matière de jeux vidéo ! Nos articles mettent
-                                        en avant les nouvelles sorties et les DLC récents, explorant leurs fonctionnalités et l'impact
-                                        sur l'expérience de jeu. Restez informé sur les tendances actuelles pour ne rien manquer !
+                                    <p class="lead">Pas d'article pour le moment!🙄
                 
                                     </p>
-                
                                 </div>
                             </div>
-            
-                
-                
-            </div>
-        </div>
-    </section>
-{% endfor %}
+                        </div>
+                    </div>
 
-</div>
+    {% endfor %}
+        
+</section>
+
+
 {% endblock %}
-
-{% block carousel %}{% endblock %}
 
 
 {% block psplus %}
