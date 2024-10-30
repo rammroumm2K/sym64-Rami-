@@ -81,4 +81,18 @@ final class ArticleController extends AbstractController
 
         return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
     }
+
+     
+    #[Route("/article/{id}", name: "article_detail")]
+    
+   public function detail(int $id, ArticleRepository $articleRepository): Response
+   {
+       $article = $articleRepository->find($id);
+       if (!$article) {
+           throw $this->createNotFoundException('L\'article n\'existe pas.');
+       }
+       return $this->render('index/detail.html.twig', [
+           'article' => $article,
+       ]);
+   }
 }

@@ -27,12 +27,13 @@ class ArticleType extends AbstractType
             ->add('published')
             ->add('user', EntityType::class, [
                 'class' => User::class,
-                'choice_label' => 'id',
+                'choice_label' => 'fullname',
             ])
             ->add('sections', EntityType::class, [
                 'class' => Section::class,
-                'choice_label' => 'id',
+                'choice_label' => 'section_title',
                 'multiple' => true,
+                'expanded' => true,
             ])
         ;
     }
