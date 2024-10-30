@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\ArticleRepository;
 use App\Repository\SectionRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -11,7 +12,7 @@ class IndexController extends AbstractController
 {
     #[Route('/', name: 'homepage')]
     # appel du gestionnaire de Section
-    public function index(SectionRepository $sections): Response
+    public function index(SectionRepository $sections, ArticleRepository $articles): Response
     {
         return $this->render(
             'index/index.html.twig', [
@@ -19,7 +20,9 @@ class IndexController extends AbstractController
                 'homepage_text'=> "Nous somme le ".date('d/m/Y \à H:i'
                 ),
                 # on met dans une variable pour twig toutes les sections récupérées
-                'sections' => $sections->findAll()
+                'sections' => $sections->findAll(),
+                'articles' => $articles->findAll(),
+
             ]
         );
     }
@@ -46,6 +49,28 @@ class IndexController extends AbstractController
             'homepage_text'=> $section->getSectionSlug(),
             'section' => $section,
             'sections' => $sections->findAll(),
+        ]);
+    }
+
+    #[Route(
+        # chemin vers la section avec son id
+        path: '/article/{id}',
+        # nom du chemin
+        name: 'article',
+        # accepte l'id au format int positif uniquement
+        requirements: ['id' => '\d+'],
+        # si absent, donne 1 comme valeur par défaut
+        defaults: ['id'=>1])]
+
+    public function article(SectionRepository $articles, int $id): Response
+    {
+        // récupération de la section
+        $article = $articles->find($id);
+        return $this->render('index/index.html.twig', [
+            'title' => 'Section '.$article->getArticlTitle(),
+            'homepage_text'=> $article->getArticleDescription(),
+            'article' => $articles,
+            'articles' => $articles->findAll(),
         ]);
     }
 }
