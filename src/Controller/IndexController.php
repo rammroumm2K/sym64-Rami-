@@ -23,7 +23,6 @@ class IndexController extends AbstractController
                 'sections' => $sections->findAll(),
                 'articles' => $articles->findAll(),
                 $images = ['ps.png', 'plus.png', 'crossplay.png'],
-   
                 'images' => $images,
    
 
