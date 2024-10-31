@@ -93,6 +93,8 @@ final class ArticleController extends AbstractController
        }
        return $this->render('index/detail.html.twig', [
            'article' => $article,
+           $images = ['ps.png', 'plus.png', 'crossplay.png'],
+           'images' => $images,
        ]);
    }
 }

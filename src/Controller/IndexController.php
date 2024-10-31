@@ -22,6 +22,10 @@ class IndexController extends AbstractController
                 # on met dans une variable pour twig toutes les sections récupérées
                 'sections' => $sections->findAll(),
                 'articles' => $articles->findAll(),
+                $images = ['ps.png', 'plus.png', 'crossplay.png'],
+   
+                'images' => $images,
+   
 
             ]
         );
